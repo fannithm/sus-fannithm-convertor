@@ -1,17 +1,17 @@
 {
-  "name": "@fannithm/const",
-  "version": "1.0.0",
-  "main": "convertor.js",
+  "name": "@fannithm/sus-fannithm-convertor",
+  "version": "1.1.0",
+  "main": "src/convertor.js",
   "license": "AGPL-3.0",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/fannithm/const.git"
+    "url": "https://github.com/fannithm/sus-fannithm-convertor.git"
   },
   "dependencies": {
-    "@fannithm/const": "^0.1.0-snapshot.1",
+    "@fannithm/const": "^0.1.0-snapshot.3",
     "sus-analyzer": "^2.2.4",
     "uuid": "^8.3.2"
   }

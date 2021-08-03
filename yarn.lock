@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@fannithm/const@^0.1.0-snapshot.1":
-  version "0.1.0-snapshot.1"
-  resolved "https://npm.pkg.github.com/download/@fannithm/const/0.1.0-snapshot.1/ecae119c5cc1e8d03b27633ea2a40b4581d831b84c07e7fb833deb64dd19778f#315d4cce58c3d3eaa7ffa70cb8ea0c0572d91f73"
-  integrity sha512-opsWsZaxnKbNwsqTyAF0whbtaeC2IrJZjawnomEl+J8jaesF08chZ9ogDH9nVwB9SmokBMJM3fVtW0tWUPPRHQ==
+"@fannithm/const@^0.1.0-snapshot.3":
+  version "0.1.0-snapshot.3"
+  resolved "https://npm.pkg.github.com/download/@fannithm/const/0.1.0-snapshot.3/d0a8273681f99334ab20a0cffb82ecfb56a087d6b0f28483b0d827fc7a84d659#28c7679bec3059cb4677bf6d8463f6e7bcdf3c8d"
+  integrity sha512-KxoNTjPVEN5XrlJUqLFFQa5rlCOgT3EgMxDy/GopwmByVd4+4soTRI96dNzQF3TyKbcs56SrRA0uyXVBWXhe/g==
 
 sus-analyzer@^2.2.4:
   version "2.2.4"
