@@ -1,6 +1,6 @@
 {
   "name": "@fannithm/sus-fannithm-convertor",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "src/convertor.js",
   "license": "AGPL-3.0",
   "publishConfig": {

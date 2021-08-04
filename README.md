@@ -14,5 +14,4 @@ console.log(data);
 
 ## BUGS
 
-1. Flick in slide will be dropped directly.
-2. BPM change will not be parsed correctly (Caused by sus-analyzer).
+1. BPM change will not be parsed correctly (Caused by sus-analyzer).

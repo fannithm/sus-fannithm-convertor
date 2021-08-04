@@ -1,7 +1,6 @@
 const { v4 } = require("uuid");
 const SusAnalyzer = require("sus-analyzer");
 const { NoteType, CurveType, FlickDirection } = require('@fannithm/const/js/pjsk');
-const fs = require("fs");
 
 /**
  * Map convertor
@@ -11,7 +10,6 @@ const fs = require("fs");
 module.exports = function (sus) {
 	const tickPerBeat = 480;
 	const susData = SusAnalyzer.getScore(sus, tickPerBeat);
-	fs.writeFileSync('test.json', JSON.stringify(susData));
 	const id1 = v4();
 	const data = {
 		timelines: [
@@ -47,7 +45,7 @@ module.exports = function (sus) {
 				note1 => onSamePosition(note, note1)
 			);
 			const flickIndex = susData.shortNotes.findIndex(
-				note1 => note.noteType === 3 && onSamePosition(note, note1)
+				note1 => note1.noteType === 3 && onSamePosition(note, note1)
 			);
 			const noteIndex = susData.shortNotes.findIndex(
 				note1 => onSamePosition(note, note1)

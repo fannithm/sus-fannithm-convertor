@@ -1,7 +1,7 @@
 const fs = require("fs");
 const convertor = require("./convertor");
 
-const sus = fs.readFileSync('./blessing.sus', 'utf8');
+const sus = fs.readFileSync('./1.sus', 'utf8');
 
 const data = convertor(sus);
 
