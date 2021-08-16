@@ -54,7 +54,6 @@ module.exports = function (sus) {
 				susData.shortNotes.splice(noteIndex, 1);
 				_slide.critical = true;
 			}
-			const _gcd = gcd(note.tick, tickPerBeat * 4);
 			const _note = {
 				id: v4(),
 				type: {
@@ -63,11 +62,7 @@ module.exports = function (sus) {
 					3: NoteType.SlideVisible,
 					5: NoteType.SlideInvisible
 				}[note.noteType],
-				beat: [
-					note.measure,
-					note.tick / _gcd,
-					note.tick ? (tickPerBeat * 4 / _gcd) : 1
-				],
+				beat: getBeat(note.measure, note.tick, tickPerBeat),
 				lane: note.lane - 2,
 				width: note.width,
 				curve: CurveType.Linear
@@ -107,16 +102,11 @@ module.exports = function (sus) {
 		const air = susData.airNotes.find(
 			air => onSamePosition(air, note)
 		);
-		const _gcd = gcd(note.tick, tickPerBeat * 4);
 		const _note = {
 			id: v4(),
 			timeline: id1,
 			type: air ? NoteType.Flick : NoteType.Tap, // 0: tap, 1: flick
-			beat: [
-				note.measure,
-				note.tick / _gcd,
-				note.tick ? tickPerBeat * 4 / _gcd : 1
-			],
+			beat: getBeat(note.measure, note.tick, tickPerBeat),
 			lane: note.lane - 2,
 			width: note.width
 		}
@@ -130,7 +120,7 @@ module.exports = function (sus) {
 
 
 function gcd(a, b) {
-	if (a === 0) return b;
+	if (a === 0 || b === 0) return 1;
 	while (b !== 0) {
 		const r = b;
 		b = a % b;
@@ -146,3 +136,11 @@ function onSamePosition(note1, note2) {
 		&& note1.width === note2.width
 }
 
+function getBeat(measure, tick, tickPerBeat) {
+	const _gcd = gcd(tick % tickPerBeat, tickPerBeat);
+	return [
+		measure * 4 + Math.floor(tick / tickPerBeat),
+		(tick % tickPerBeat) / _gcd,
+		tick ? (tickPerBeat / _gcd) : 1
+	]
+}
