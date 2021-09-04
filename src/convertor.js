@@ -2,14 +2,15 @@ const { v4 } = require("uuid");
 const SusAnalyzer = require("sus-analyzer");
 const { NoteType, CurveType, FlickDirection } = require('@fannithm/const/js/pjsk');
 
+
 /**
  * Map convertor
  * @param {string} sus sus data
  * @returns fannithm map data
  */
-module.exports = function (sus) {
+function convertor(sus) {
 	const tickPerBeat = 480;
-	const susData = SusAnalyzer.getScore(sus, tickPerBeat);
+	const susData = getScore(sus, tickPerBeat);
 	const id1 = v4();
 	const data = {
 		timelines: [
@@ -50,10 +51,6 @@ module.exports = function (sus) {
 			const noteIndex = susData.shortNotes.findIndex(
 				note1 => onSamePosition(note, note1)
 			);
-			if (index === 0 && noteIndex !== -1 && susData.shortNotes[noteIndex].noteType === 2) {
-				susData.shortNotes.splice(noteIndex, 1);
-				_slide.critical = true;
-			}
 			const _note = {
 				id: v4(),
 				type: {
@@ -67,15 +64,22 @@ module.exports = function (sus) {
 				width: note.width,
 				curve: CurveType.Linear
 			};
-			if (_note.type === NoteType.SlideEndDefault && airIndex !== -1) {
+			// critical slide
+			if (index === 0 && noteIndex !== -1 && susData.shortNotes[noteIndex].noteType === 2) {
+				susData.shortNotes.splice(noteIndex, 1);
+				_slide.critical = true;
+				// end flick
+			} else if (_note.type === NoteType.SlideEndDefault && airIndex !== -1) {
 				const [air] = susData.airNotes.splice(airIndex, 1);
 				_note.type = NoteType.SlideEndFlick;
 				_note.direction = air.noteType === 3 ? FlickDirection.Left :
 					(air.noteType === 4 ? FlickDirection.Right : FlickDirection.Up);
+				// end critical flick
 				if (noteIndex !== -1) {
 					const [node] = susData.shortNotes.splice(noteIndex, 1);
 					if (node.noteType === 2) _note.critical = true;
 				}
+				// curve
 			} else if (airIndex !== -1 && noteIndex !== -1) {
 				susData.shortNotes.splice(noteIndex, 1);
 				const [air] = susData.airNotes.splice(airIndex, 1);
@@ -85,6 +89,7 @@ module.exports = function (sus) {
 					6: CurveType.EaseIn
 				}[air.noteType];
 			}
+			// un-positioned node
 			if (flickIndex !== -1 && _note.type === NoteType.SlideVisible) {
 				susData.shortNotes.splice(flickIndex, 1);
 				delete _note.width;
@@ -118,6 +123,19 @@ module.exports = function (sus) {
 	return data;
 }
 
+/**
+ * @param {string} sus sus data
+ * @param {number} tickPerBeat tick per beat
+ * @returns {import("sus-analyzer").ISusScore}
+ */
+function getScore(sus, tickPerBeat) {
+	return SusAnalyzer.getScore(sus, tickPerBeat);
+}
+
+module.exports = {
+	convertor,
+	getScore
+}
 
 function gcd(a, b) {
 	if (a === 0 || b === 0) return 1;

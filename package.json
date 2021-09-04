@@ -1,7 +1,7 @@
 {
   "name": "@fannithm/sus-fannithm-convertor",
-  "version": "1.2.0",
-  "main": "src/convertor.js",
+  "version": "1.2.1",
+  "main": "src/index.js",
   "license": "AGPL-3.0",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
