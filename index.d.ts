@@ -2,7 +2,7 @@
  * @module @fannithm/sus-fannithm-convertor
  */
 
-import { IMap } from "@fannithm/const/js/pjsk";
+import { IMap } from "@fannithm/const/dist/pjsk";
 
 /**
  * Convertor sus to fannithm map format.
