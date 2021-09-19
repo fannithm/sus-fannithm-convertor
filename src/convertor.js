@@ -1,6 +1,6 @@
 const { v4 } = require("uuid");
 const SusAnalyzer = require("sus-analyzer");
-const { NoteType, CurveType, FlickDirection } = require('@fannithm/const/js/pjsk');
+const { NoteType, CurveType, FlickDirection } = require('@fannithm/const/dist/pjsk');
 
 
 /**
