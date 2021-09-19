@@ -138,7 +138,7 @@ module.exports = {
 }
 
 function gcd(a, b) {
-	if (a === 0 || b === 0) return 1;
+	if (a === 0 || b === 0) return Math.max(a, b, 1);
 	while (b !== 0) {
 		const r = b;
 		b = a % b;
