@@ -84,9 +84,9 @@ function convertor(sus) {
 				susData.shortNotes.splice(noteIndex, 1);
 				const [air] = susData.airNotes.splice(airIndex, 1);
 				_note.curve = {
-					2: CurveType.EaseOut,
-					5: CurveType.EaseIn,
-					6: CurveType.EaseIn
+					2: CurveType.EaseIn,
+					5: CurveType.EaseOut,
+					6: CurveType.EaseOut
 				}[air.noteType];
 			}
 			// un-positioned node
